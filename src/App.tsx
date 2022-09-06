@@ -3,7 +3,7 @@ import { Layout } from "./components";
 const App = () => {
   return (
     <Layout page="main" hideNav>
-      <div>holi</div>
+      <div style={{ height: "90vh" }}>holi</div>
     </Layout>
   );
 };

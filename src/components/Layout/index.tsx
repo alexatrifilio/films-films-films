@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 type Props = {
@@ -12,6 +13,7 @@ const Layout: FC<Props> = ({ children, page, hideNav }) => {
     <>
       <Header hideNav={hideNav} />
       <main className={`page ${page}`}> {children} </main>
+      <Footer />
     </>
   );
 };
