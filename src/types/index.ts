@@ -12,3 +12,14 @@ export type User = {
   sessionToken: string;
   state: string;
 };
+
+export type SignUpPayload = {
+  avatar: string;
+  birthdate: Date;
+  city: string;
+  country: string;
+  email: string;
+  lastname: string;
+  name: string;
+  password: string;
+};
