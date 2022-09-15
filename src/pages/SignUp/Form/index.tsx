@@ -35,10 +35,18 @@ const Form: FC<Props> = ({ onLogin, className }) => {
         <label htmlFor="email">Correo Electrónico</label>
         <input type="email" id="email" {...register("email")} />
       </div>
+      <br />
+      {formState.errors.email && (
+        <span> {formState.errors.email?.message}</span>
+      )}
       <div>
         <label htmlFor="password"> Contraseña </label>
         <input type="password" id="password" {...register("password")} />
       </div>
+      <br />
+      {formState.errors.password && (
+        <span>{formState.errors.password?.message}</span>
+      )}
       <div>
         <label htmlFor="avatar">Avatar</label>
         <input type="url" id="avatar" {...register("avatar")} />
