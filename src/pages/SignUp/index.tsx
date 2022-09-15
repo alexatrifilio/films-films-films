@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Card, Container } from "react-bootstrap";
 import { Layout } from "../../components";
+import { SignUpForm } from "./Form";
 
 const SignUp: FC = () => {
   return (
@@ -12,7 +13,9 @@ const SignUp: FC = () => {
             <Card.Subtitle className="mb-2 text-muted">
               Es rápido y fácil
             </Card.Subtitle>
-            <Container>{/* <SignUpForm /> */}</Container>
+            <Container>
+              <SignUpForm />
+            </Container>
           </Card.Body>
         </Card>
       </Container>
