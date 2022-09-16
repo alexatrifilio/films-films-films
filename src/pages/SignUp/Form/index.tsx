@@ -57,10 +57,10 @@ const Form: FC<Props> = ({ onLogin, className }) => {
       </div>
 
       <div>
-        <label htmlFor="countries"> País </label>
+        <label htmlFor="country"> País </label>
         <select
-          name="countries"
-          id="countries"
+          id="country"
+          {...register("country")}
           onChange={(e) => {
             setSelectCountry((prevState) => ({
               ...prevState,
@@ -74,8 +74,8 @@ const Form: FC<Props> = ({ onLogin, className }) => {
         </select>
       </div>
       <div>
-        <label htmlFor="cities"> Ciudad </label>
-        <select name="cities" id="cities">
+        <label htmlFor="city"> Ciudad </label>
+        <select id="city" {...register("city")}>
           {countries
             .find((country) => country.name === selectCountry.name)
             ?.cities.map((city) => {
