@@ -14,7 +14,11 @@ const SignUp: FC = () => {
               Es rápido y fácil
             </Card.Subtitle>
             <Container>
-              <SignUpForm />
+              <SignUpForm
+                onLogin={() => {
+                  console.log("anda");
+                }}
+              />
             </Container>
           </Card.Body>
         </Card>

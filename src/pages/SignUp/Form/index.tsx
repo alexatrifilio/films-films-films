@@ -16,13 +16,9 @@ const Form: FC<Props> = ({ onLogin, className }) => {
     resolver: yupResolver(validationSchema),
     defaultValues,
   });
-  const [selectCountry, setSelectCountry] = useState<Country>({
-    name: "",
-    cities: [""],
-  });
 
   return (
-    <form onSubmit={handleSubmit(onLogin)}>
+    <form onSubmit={handleSubmit(onLogin)} className={`form ${className}`}>
       <div>
         <label htmlFor="name"> Nombre</label>
         <input type="text" id="name" {...register("name")} />
@@ -58,16 +54,7 @@ const Form: FC<Props> = ({ onLogin, className }) => {
 
       <div>
         <label htmlFor="country"> País </label>
-        <select
-          id="country"
-          {...register("country")}
-          // onChange={(e) => {
-          //   setSelectCountry((prevState) => ({
-          //     ...prevState,
-          //     name: e.target.value,
-          //   }));
-          // }}
-        >
+        <select id="country" {...register("country")}>
           {countries.map((country) => {
             return <option value={country.name}>{country.name}</option>;
           })}
