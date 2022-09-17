@@ -1,7 +1,14 @@
+import { mapToArray } from "../../helpers";
+import { SignUpPayload, User } from "../../types";
 import { apiDB } from "../../utils";
 
-const add = async () => {
-  await apiDB.post("/users.json", {});
+const add = async (user: SignUpPayload) => {
+  await apiDB.post("/users.json", JSON.stringify(user));
 };
 
-export const usersApi = { add };
+const getAll = async (): Promise<User[]> => {
+  const response = await apiDB("/users.json");
+  return mapToArray(response.data);
+};
+
+export const usersApi = { add, getAll };
