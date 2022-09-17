@@ -12,7 +12,7 @@ type Props = {
 };
 
 const Form: FC<Props> = ({ onLogin, className }) => {
-  const { register, handleSubmit, formState } = useForm<SignUpPayload>({
+  const { register, handleSubmit, formState, watch } = useForm<SignUpPayload>({
     resolver: yupResolver(validationSchema),
     defaultValues,
   });
@@ -61,12 +61,12 @@ const Form: FC<Props> = ({ onLogin, className }) => {
         <select
           id="country"
           {...register("country")}
-          onChange={(e) => {
-            setSelectCountry((prevState) => ({
-              ...prevState,
-              name: e.target.value,
-            }));
-          }}
+          // onChange={(e) => {
+          //   setSelectCountry((prevState) => ({
+          //     ...prevState,
+          //     name: e.target.value,
+          //   }));
+          // }}
         >
           {countries.map((country) => {
             return <option value={country.name}>{country.name}</option>;
@@ -77,7 +77,7 @@ const Form: FC<Props> = ({ onLogin, className }) => {
         <label htmlFor="city"> Ciudad </label>
         <select id="city" {...register("city")}>
           {countries
-            .find((country) => country.name === selectCountry.name)
+            .find((country) => country.name === watch("country"))
             ?.cities.map((city) => {
               return <option value={city}> {city} </option>;
             })}
