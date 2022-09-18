@@ -6,7 +6,7 @@ export const validationSchema = yup.object().shape({
     .string()
     .email(FORMS_MESSAGES.EMAIL)
     .required(FORMS_MESSAGES.REQUIRED),
-  pass: yup
+  password: yup
     .string()
     .required(FORMS_MESSAGES.REQUIRED)
     .min(8, FORMS_MESSAGES.PASS_SIZE)
