@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { countries, Country } from "../../../data/countries";
+import { countries } from "../../../data/countries";
 import { SignUpPayload } from "../../../types";
 import { validationSchema } from "./validationSchema";
 import { defaultValues } from "./defaultValues";
