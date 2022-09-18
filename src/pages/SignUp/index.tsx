@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Card, Container } from "react-bootstrap";
+import { usersApi } from "../../api";
 import { Layout } from "../../components";
 import { SignUpForm } from "./Form";
 
@@ -15,8 +16,8 @@ const SignUp: FC = () => {
             </Card.Subtitle>
             <Container>
               <SignUpForm
-                onLogin={() => {
-                  console.log("anda");
+                onSignUp={(formData) => {
+                  usersApi.save(formData);
                 }}
               />
             </Container>

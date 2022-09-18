@@ -8,18 +8,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Container, Form } from "react-bootstrap";
 
 type Props = {
-  onLogin: (formData: SignUpPayload) => void;
+  onSignUp: (formData: SignUpPayload) => void;
   className?: string;
 };
 
-const SignUpForm: FC<Props> = ({ onLogin, className }) => {
+const SignUpForm: FC<Props> = ({ onSignUp, className }) => {
   const { register, handleSubmit, formState, watch } = useForm<SignUpPayload>({
     resolver: yupResolver(validationSchema),
     defaultValues,
   });
 
   return (
-    <Form onSubmit={handleSubmit(onLogin)} className={`form ${className}`}>
+    <Form onSubmit={handleSubmit(onSignUp)} className={`form ${className}`}>
       <Container>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Nombre</Form.Label>
@@ -77,7 +77,7 @@ const SignUpForm: FC<Props> = ({ onLogin, className }) => {
           <Form.Control type="date" {...register("birthdate")} />
         </Form.Group>
         <Form.Select size="sm" {...register("country")} className="mb-3">
-          <option selected disabled>
+          <option value={"Seleccione su país"} disabled>
             Seleccione su país
           </option>
           {countries.map((country) => {
@@ -85,8 +85,8 @@ const SignUpForm: FC<Props> = ({ onLogin, className }) => {
           })}
         </Form.Select>
         <Form.Select size="sm" {...register("city")} className="mb-3">
-          <option selected disabled>
-            Seleccione su ciudad{" "}
+          <option value={"Seleccione su ciudad"} disabled>
+            Seleccione su ciudad
           </option>
           {countries
             .find((country) => country.name === watch("country"))
