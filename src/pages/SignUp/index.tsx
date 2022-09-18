@@ -2,9 +2,12 @@ import { FC } from "react";
 import { Card, Container } from "react-bootstrap";
 import { usersApi } from "../../api";
 import { Layout } from "../../components";
+import { useUser } from "../../hooks";
 import { SignUpForm } from "./Form";
 
 const SignUp: FC = () => {
+  const { onSignUp } = useUser();
+
   return (
     <Layout page="signup">
       <Container>
@@ -15,11 +18,7 @@ const SignUp: FC = () => {
               Es rápido y fácil
             </Card.Subtitle>
             <Container>
-              <SignUpForm
-                onSignUp={(formData) => {
-                  usersApi.save(formData);
-                }}
-              />
+              <SignUpForm onSignUp={onSignUp} />
             </Container>
           </Card.Body>
         </Card>
