@@ -76,21 +76,25 @@ const SignUpForm: FC<Props> = ({ onLogin, className }) => {
           <Form.Label>Fecha de nacimiento</Form.Label>
           <Form.Control type="date" {...register("birthdate")} />
         </Form.Group>
-        <Form.Select size="sm" {...register("country")}>
-          <option disabled>Seleccione su país</option>
+        <Form.Select size="sm" {...register("country")} className="mb-3">
+          <option selected disabled>
+            Seleccione su país
+          </option>
           {countries.map((country) => {
             return <option value={country.name}>{country.name}</option>;
           })}
         </Form.Select>
-        <Form.Select size="sm" {...register("city")}>
-          <option disabled>Seleccione su ciudad</option>
+        <Form.Select size="sm" {...register("city")} className="mb-3">
+          <option selected disabled>
+            Seleccione su ciudad{" "}
+          </option>
           {countries
             .find((country) => country.name === watch("country"))
             ?.cities.map((city) => {
               return <option value={city}> {city} </option>;
             })}
         </Form.Select>
-        <Button variant="light" type="submit">
+        <Button variant="dark" type="submit">
           Registrarme!
         </Button>
       </Container>
