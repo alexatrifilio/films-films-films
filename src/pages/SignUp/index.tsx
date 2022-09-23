@@ -1,9 +1,12 @@
 import { FC } from "react";
 import { Card, Container } from "react-bootstrap";
 import { Layout } from "../../components";
+import { useUser } from "../../hooks";
 import { SignUpForm } from "./Form";
 
 const SignUp: FC = () => {
+  const { signUp } = useUser();
+
   return (
     <Layout page="signup">
       <Container>
@@ -14,11 +17,7 @@ const SignUp: FC = () => {
               Es rápido y fácil
             </Card.Subtitle>
             <Container>
-              <SignUpForm
-                onLogin={() => {
-                  console.log("anda");
-                }}
-              />
+              <SignUpForm onSignUp={signUp} />
             </Container>
           </Card.Body>
         </Card>
