@@ -3,7 +3,7 @@ import { SignUpPayload, User } from "../../types";
 import { apiDB } from "../../utils";
 
 const save = async (user: SignUpPayload) => {
-  await apiDB.post("/users.json", JSON.stringify(user));
+  await apiDB.post("/users.json", user);
 };
 const getAll = async (): Promise<User[]> => {
   const response = await apiDB("/users.json");
@@ -20,7 +20,7 @@ const erase = async (id: string) => {
 };
 
 const patch = async (id: string, payload: Partial<User>) => {
-  await apiDB.patch(`/users/${id}.json`, JSON.stringify(payload));
+  await apiDB.patch(`/users/${id}.json`, payload);
 };
 
 export const usersApi = { save, getAll, get, erase, patch };
