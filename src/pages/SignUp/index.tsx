@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { Card, Container } from "react-bootstrap";
-import { Layout } from "../../components";
+import { Layout, SignUpForm } from "../../components";
 import { useUser } from "../../hooks";
-import { SignUpForm } from "./Form";
 
 const SignUp: FC = () => {
   const { signUp } = useUser();

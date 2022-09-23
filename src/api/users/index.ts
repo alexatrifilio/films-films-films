@@ -20,7 +20,8 @@ const erase = async (id: string) => {
 };
 
 const patch = async (id: string, payload: Partial<User>) => {
-  await apiDB.patch(`/users/${id}.json`, payload);
+  const response = await apiDB.patch(`/users/${id}.json`, payload);
+  return response.data;
 };
 
 export const usersApi = { save, getAll, get, erase, patch };

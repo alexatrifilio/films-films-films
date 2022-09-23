@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { FORMS_MESSAGES } from "../../../constants/forms";
+import { FORMS_MESSAGES } from "../../constants/forms";
 
 export const validationSchema = yup.object().shape({
   email: yup

@@ -23,3 +23,8 @@ export type SignUpPayload = {
   name: string;
   password: string;
 };
+
+export type LogInPayload = {
+  email: string;
+  password: string;
+};

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { countries } from "../../../data/countries";
 import { SignUpPayload } from "../../../types";
-import { validationSchema } from "./validationSchema";
+import { validationSchema } from "../validationSchema";
 import { defaultValues } from "./defaultValues";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Container, Form } from "react-bootstrap";
