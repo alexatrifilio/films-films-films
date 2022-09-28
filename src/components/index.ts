@@ -1,2 +1,2 @@
 export { Layout } from "./Layout";
-export { SignUpForm } from "./Forms";
+export { SignUpForm, LogInForm } from "./Forms";

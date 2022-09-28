@@ -1,5 +1,5 @@
 import { usersApi } from "../../api";
-import { LogInPayload, User } from "../../types";
+import { LogInPayload } from "../../types";
 
 const useAuth = () => {
   const logIn = async ({ email, password }: LogInPayload) => {
