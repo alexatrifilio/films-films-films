@@ -6,6 +6,7 @@ const useAuth = () => {
     const setUserToken = async (id: string) => {
       const newToken = Math.random().toString(36).substr(2);
       const rsp = await usersApi.patch(id, { sessionToken: newToken });
+
       return rsp ? newToken : null;
     };
 
