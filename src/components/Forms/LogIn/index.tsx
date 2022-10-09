@@ -33,10 +33,10 @@ const LogInForm: FC<Props> = ({ onLogin, className }) => {
         )}
       </Form.Group>
       <Form.Group className="mb-3" controlId="password">
-        <Form.Label>Contrasea</Form.Label>
+        <Form.Label>Contraseña</Form.Label>
         <Form.Control
           type="password"
-          placeholder="Ingrese su contrasea aquí"
+          placeholder="Ingrese su contraseña aquí"
           {...register("password")}
         />
         {formState.errors.password && (

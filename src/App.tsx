@@ -1,11 +1,10 @@
-import { useEffect } from "react";
-import { Layout } from "./components";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <Layout page="main" hideNav>
-      <div style={{ height: "90vh" }}>holi</div>
-    </Layout>
+    <div className="app">
+      <Outlet />
+    </div>
   );
 };
 
