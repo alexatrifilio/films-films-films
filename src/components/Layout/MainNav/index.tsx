@@ -16,7 +16,7 @@ const MainNav: FC<Props> = ({ hideNav }) => {
           <>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Link className="nav-link" to={"/home"}>
+                <Link className="nav-link" to={"/"}>
                   Home
                 </Link>
                 <Link className="nav-link" to={"/friends:id"}>

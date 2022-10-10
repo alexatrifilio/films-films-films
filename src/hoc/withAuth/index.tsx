@@ -14,6 +14,9 @@ const withAuth = (WrappedComponent: FC): FC => {
       if (!me && !publicRoutes.includes(location.pathname)) {
         navigate("/login");
       }
+      if (me && publicRoutes.includes(location.pathname)) {
+        navigate("/");
+      }
     }, [me]);
 
     return <WrappedComponent />;

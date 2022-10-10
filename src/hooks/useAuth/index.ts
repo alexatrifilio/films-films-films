@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { usersApi } from "../../api";
 import { AuthContext } from "../../contexts";
-import { LogInPayload } from "../../types";
+import { LogInPayload, User } from "../../types";
 
 const useAuth = () => {
   const { me, setCurrentUser } = useContext(AuthContext);
@@ -42,7 +42,18 @@ const useAuth = () => {
     }
   };
 
-  return { logIn, me };
+  const logOut = async () => {
+    const users = await usersApi.getAll();
+    const storedToken = localStorage.getItem("user-token");
+    const logged = users.find((user) => user.sessionToken === storedToken);
+    if (logged) {
+      const loggedID = logged.id;
+      usersApi.patch(loggedID, { sessionToken: undefined });
+      setCurrentUser(undefined);
+    }
+  };
+
+  return { logIn, me, logOut };
 };
 
 export { useAuth };

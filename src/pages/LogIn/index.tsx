@@ -7,9 +7,9 @@ import { useAuth } from "../../hooks/useAuth";
 const LogInPage: FC = () => {
   const { logIn } = useAuth();
   return (
-    <Layout page="login">
+    <Layout page="login" hideNav>
       <Container>
-        <Card>
+        <Card style={{ width: "30rem" }}>
           <Card.Body>
             <Card.Title>Log In</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
