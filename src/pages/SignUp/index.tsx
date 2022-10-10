@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { Card, Container } from "react-bootstrap";
-import { Layout } from "../../components";
+import { Layout, SignUpForm } from "../../components";
+import { withAuth } from "../../hoc";
 import { useUser } from "../../hooks";
-import { SignUpForm } from "./Form";
 
-const SignUp: FC = () => {
+const SignUpPage: FC = () => {
   const { signUp } = useUser();
 
   return (
-    <Layout page="signup">
+    <Layout page="signup" hideNav>
       <Container>
         <Card>
           <Card.Body>
@@ -26,4 +26,4 @@ const SignUp: FC = () => {
   );
 };
 
-export { SignUp };
+export const SignUp = withAuth(SignUpPage);
