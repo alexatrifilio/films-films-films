@@ -46,6 +46,8 @@ export type Movie = {
   vote_average: number;
 };
 
+export type RecommendedPayload = Omit<Recommended, "id">;
+
 export type Recommended = {
   id: string;
   user: Pick<User, "id" | "name" | "lastname">;

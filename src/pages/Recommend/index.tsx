@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { movieApi } from "../../api/movies";
+import { movieApi, recommendedApi } from "../../api";
 import { Layout } from "../../components";
+import { AuthContext } from "../../contexts";
 import { withAuth } from "../../hoc";
-import { Movie } from "../../types";
+import { useRecommended } from "../../hooks";
+import { Movie, Recommended } from "../../types";
 
 const RecommendPage = () => {
   const [movie, setMovie] = useState("");
   const [results, setResults] = useState<Movie[] | undefined>(undefined);
+  const { saveToApi } = useRecommended();
+  const { me } = useContext(AuthContext);
   const search = async () => {
     const data = await movieApi.search(movie, 1);
     setResults(data);
@@ -49,7 +53,24 @@ const RecommendPage = () => {
                 <Card.Body>
                   <Card.Title> {title} </Card.Title>
                   <Card.Text>{overview}</Card.Text>
-                  <Button variant="dark"> Recomendar </Button>
+                  <Button
+                    variant="dark"
+                    onClick={saveToApi({
+                      title,
+                      detail: overview,
+                      image: poster_path,
+                      comments: [],
+                      date: new Date(),
+                      user: {
+                        id: me?.id,
+                        name: me?.name,
+                        lastname: me?.lastname,
+                      },
+                    })}
+                  >
+                    {" "}
+                    Recomendar{" "}
+                  </Button>
                 </Card.Body>
               </Card>
             );

@@ -1,9 +1,10 @@
 import { mapToArray } from "../../helpers";
-import { Recommended } from "../../types";
+import { Recommended, RecommendedPayload } from "../../types";
 import { recommendedDB } from "../../utils/axios";
 
-const save = async (movie: Recommended) => {
-  await recommendedDB.post("/movies.json", movie);
+const save = async (movie: RecommendedPayload) => {
+  const response = await recommendedDB.post("/movies.json", movie);
+  return response.data;
 };
 
 const getAll = async (): Promise<Recommended[]> => {
