@@ -14,7 +14,7 @@ const Layout: FC<Props> = ({ children, page, hideNav }) => {
     <>
       <Header hideNav={hideNav} />
       <main className={`page ${page}`}>
-        <Container>{children}</Container>
+        <Container className="px-4 py-2">{children}</Container>
       </main>
       <Footer />
     </>
