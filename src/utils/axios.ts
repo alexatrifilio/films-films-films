@@ -11,4 +11,8 @@ const movieDB = axios.create({
   },
 });
 
-export { apiDB, movieDB };
+const recommendedDB = axios.create({
+  baseURL: process.env.REACT_APP_DB_FIREBASE,
+});
+
+export { apiDB, movieDB, recommendedDB };

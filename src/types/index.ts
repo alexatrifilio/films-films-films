@@ -45,3 +45,13 @@ export type Movie = {
   video: boolean;
   vote_average: number;
 };
+
+export type Recommended = {
+  id: string;
+  user: Pick<User, "id" | "name" | "lastname">;
+  image?: string;
+  title: string;
+  detail: string;
+  comments: Comment[];
+  date: Date;
+};

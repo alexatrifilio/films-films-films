@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { movieApi } from "../../api/movies";
 import { Layout } from "../../components";
