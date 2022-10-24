@@ -3,6 +3,7 @@ import { Card, Container } from "react-bootstrap";
 import { Layout, SignUpForm } from "../../components";
 import { withAuth } from "../../hoc";
 import { useUser } from "../../hooks";
+import "../style.scss";
 
 const SignUpPage: FC = () => {
   const { signUp } = useUser();
@@ -10,7 +11,7 @@ const SignUpPage: FC = () => {
   return (
     <Layout page="signup" hideNav>
       <Container>
-        <Card>
+        <Card className={"form-card"}>
           <Card.Body>
             <Card.Title>Registrate</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
