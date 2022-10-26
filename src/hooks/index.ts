@@ -1,3 +1,4 @@
 export { useUser } from "./useUser";
 export { useAuth } from "./useAuth";
-export { useRecommended } from "./useRecommend";
+export { usePosts } from "./usePosts";
+export { useMovie } from "./useMovie";

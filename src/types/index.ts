@@ -46,14 +46,20 @@ export type Movie = {
   vote_average: number;
 };
 
-export type RecommendedPayload = Omit<Recommended, "id">;
+export type PostPayload = Omit<Post, "id">;
 
-export type Recommended = {
+export type Post = {
   id: string;
   user: Pick<User, "id" | "name" | "lastname">;
   image?: string;
   title: string;
   detail: string;
   comments: Comment[];
+  date: Date;
+};
+
+export type Comment = {
+  user: Pick<User, "id" | "name" | "lastname">;
+  detail: string;
   date: Date;
 };

@@ -1,22 +1,12 @@
-import { useContext, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { movieApi } from "../../api";
 import { Layout } from "../../components";
-import { AuthContext } from "../../contexts";
 import { withAuth } from "../../hoc";
-import { useRecommended } from "../../hooks";
-import { Movie, RecommendedPayload } from "../../types";
+import { useAuth, useMovie, usePosts } from "../../hooks";
 
 const RecommendPage = () => {
-  const [movie, setMovie] = useState("");
-  const [results, setResults] = useState<Movie[] | undefined>(undefined);
-  const { saveToApi, setReco } = useRecommended();
-  const { me } = useContext(AuthContext);
-
-  const search = async () => {
-    const data = await movieApi.search(movie, 1);
-    setResults(data);
-  };
+  const { search, movie, setMovie, results } = useMovie();
+  const { savePost } = usePosts();
+  const { me } = useAuth();
 
   return (
     <Layout page="recommend">
@@ -43,40 +33,44 @@ const RecommendPage = () => {
           </div>
         </Form>
         <div className="d-flex flex-wrap justify-content-around">
-          {results?.map(({ id, poster_path, title, overview }) => {
-            return (
-              <Card
-                key={id}
-                style={{ width: "18rem" }}
-                className="m-3 px-3 py-2"
-              >
-                <Card.Img variant="top" src={poster_path} />
-                <Card.Body>
-                  <Card.Title> {title} </Card.Title>
-                  <Card.Text>{overview}</Card.Text>
-                  <Button
-                    variant="dark"
-                    onClick={() => {
-                      setReco({
-                        title,
-                        detail: overview,
-                        image: poster_path,
-                        comments: [],
-                        date: new Date(),
-                        user: {
-                          id: "434566",
-                          name: "hola",
-                          lastname: "mundo",
-                        },
-                      });
-                    }}
-                  >
-                    Recomendar
-                  </Button>
-                </Card.Body>
-              </Card>
-            );
-          })}
+          {me &&
+            results?.map(({ id, poster_path, title, overview }) => {
+              return (
+                <Card
+                  key={id}
+                  style={{ width: "18rem" }}
+                  className="m-3 px-3 py-2"
+                >
+                  <Card.Img
+                    variant="top"
+                    src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                  />
+                  <Card.Body>
+                    <Card.Title> {title} </Card.Title>
+                    <Card.Text>{overview}</Card.Text>
+                    <Button
+                      variant="dark"
+                      onClick={() => {
+                        savePost({
+                          title,
+                          detail: overview,
+                          image: `https://image.tmdb.org/t/p/w500/${poster_path}`,
+                          date: new Date(),
+                          comments: [],
+                          user: {
+                            id: me.id,
+                            name: me.name,
+                            lastname: me.lastname,
+                          },
+                        });
+                      }}
+                    >
+                      Recomendar
+                    </Button>
+                  </Card.Body>
+                </Card>
+              );
+            })}
         </div>
       </>
     </Layout>

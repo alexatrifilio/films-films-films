@@ -1,3 +1,3 @@
 export { usersApi } from "./users";
 export { movieApi } from "./movies";
-export { recommendedApi } from "./recommended";
+export { postApi } from "./posts";

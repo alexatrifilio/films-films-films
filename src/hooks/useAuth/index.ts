@@ -43,11 +43,8 @@ const useAuth = () => {
   };
 
   const logOut = async () => {
-    const users = await usersApi.getAll();
-    const storedToken = localStorage.getItem("user-token");
-    const logged = users.find((user) => user.sessionToken === storedToken);
-    if (logged) {
-      const loggedID = logged.id;
+    if (me) {
+      const loggedID = me.id;
       usersApi.patch(loggedID, { sessionToken: undefined });
       setCurrentUser(undefined);
     }
