@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { postApi } from "../../api";
 import { StorageContext } from "../../contexts";
-import { Comment, Post, PostPayload } from "../../types";
+import { Post, PostPayload } from "../../types";
 
 const usePosts = () => {
   const { posts, updatePosts } = useContext(StorageContext);
@@ -13,10 +13,11 @@ const usePosts = () => {
   const getPosts = async () => {
     const response = await postApi.getAll();
     updatePosts(
-      response.sort((a: Comment, b: Comment) =>
+      response.sort((a: Post, b: Post) =>
         a.date.getTime() <= b.date.getTime() ? -1 : 1
       )
     );
+    return response;
   };
 
   const savePost = async (payload: PostPayload) => {
