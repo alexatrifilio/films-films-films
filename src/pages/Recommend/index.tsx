@@ -1,12 +1,17 @@
+import { useEffect } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { Layout } from "../../components";
+import { Layout, MyPagination } from "../../components";
 import { withAuth } from "../../hoc";
 import { useAuth, useMovie, usePosts } from "../../hooks";
 
 const RecommendPage = () => {
-  const { search, movie, setMovie, results } = useMovie();
+  const { search, movie, setMovie, results, page, setPage } = useMovie();
   const { savePost } = usePosts();
   const { me } = useAuth();
+
+  useEffect(() => {
+    search(movie, page);
+  }, [page]);
 
   return (
     <Layout page="recommend">
@@ -14,7 +19,7 @@ const RecommendPage = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            search();
+            search(movie, page);
           }}
         >
           <div className="d-flex justify-content-between my-3">
@@ -72,6 +77,7 @@ const RecommendPage = () => {
               );
             })}
         </div>
+        <MyPagination page={page} setPage={setPage} />
       </>
     </Layout>
   );

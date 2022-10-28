@@ -8,12 +8,12 @@ const save = async (post: PostPayload) => {
 };
 
 const getAll = async (): Promise<Post[]> => {
-  const response = await postsDB("/posts.json");
+  const response = await postsDB.get("/posts.json");
   return mapToArray(response.data);
 };
 
 const get = async (id: string): Promise<Post> => {
-  const response = await postsDB(`/posts/${id}.json`);
+  const response = await postsDB.get(`/posts/${id}.json`);
   return response.data;
 };
 

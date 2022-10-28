@@ -6,12 +6,12 @@ const save = async (user: SignUpPayload) => {
   await apiDB.post("/users.json", user);
 };
 const getAll = async (): Promise<User[]> => {
-  const response = await apiDB("/users.json");
+  const response = await apiDB.get("/users.json");
   return mapToArray(response.data);
 };
 
 const get = async (id: string): Promise<User> => {
-  const response = await apiDB(`/users/${id}.json`);
+  const response = await apiDB.get(`/users/${id}.json`);
   return response.data;
 };
 

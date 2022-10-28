@@ -5,13 +5,14 @@ import { Movie } from "../../types";
 const useMovie = () => {
   const [movie, setMovie] = useState("");
   const [results, setResults] = useState<Movie[] | undefined>(undefined);
+  const [page, setPage] = useState(1);
 
-  const search = async () => {
-    const data = await movieApi.search(movie, 1);
+  const search = async (movie: string, page: number) => {
+    const data = await movieApi.search(movie, page);
     setResults(data);
   };
 
-  return { movie, setMovie, results, search };
+  return { movie, setMovie, results, search, page, setPage };
 };
 
 export { useMovie };
