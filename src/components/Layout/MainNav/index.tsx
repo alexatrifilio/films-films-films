@@ -19,6 +19,9 @@ const MainNav: FC<Props> = ({ hideNav }) => {
                 <Link className="nav-link" to={"/"}>
                   Home
                 </Link>
+                <Link className="nav-link" to={"/recommend"}>
+                  Recomendar Película
+                </Link>
                 <Link className="nav-link" to={"/friends:id"}>
                   Buscar Amigos
                 </Link>
