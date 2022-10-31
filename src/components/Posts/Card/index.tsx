@@ -66,7 +66,9 @@ const PostCard: FC<Props> = ({
           onComment={() => {
             updatePost(id, {
               comments: [
+                ...comments, //y este spread tampoco está bien pero no me doy cuenta como hacerlo
                 {
+                  // sé que me falta el spread operator para que se agregue la ino del formulario pero no se como llamarla por así decirlo...
                   date: new Date(),
                   user: {
                     id: me.id,
@@ -74,7 +76,6 @@ const PostCard: FC<Props> = ({
                     lastname: me.lastname,
                     avatar: me.avatar,
                   },
-                  detail,
                 },
               ],
             });
