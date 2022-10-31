@@ -12,11 +12,11 @@ const usePosts = () => {
 
   const getPosts = async () => {
     const response = await postApi.getAll();
-    updatePosts(
-      response.sort((a: Post, b: Post) =>
-        a.date.getTime() <= b.date.getTime() ? -1 : 1
-      )
-    );
+    // updatePosts(
+    //   response.sort((a: Post, b: Post) =>
+    //     a.date.getTime() <= b.date.getTime() ? -1 : 1
+    //   )
+    //);
     return response;
   };
 
@@ -25,8 +25,8 @@ const usePosts = () => {
     getPosts();
   };
 
-  const updatePost = async (post: Post) => {
-    await postApi.patch(post);
+  const updatePost = async (id: string, payload: Partial<Post>) => {
+    await postApi.patch(id, payload);
   };
 
   return { savePost, getPosts, updatePost };
