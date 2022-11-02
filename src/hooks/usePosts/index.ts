@@ -27,6 +27,7 @@ const usePosts = () => {
 
   const updatePost = async (id: string, payload: Partial<Post>) => {
     await postApi.patch(id, payload);
+    console.log(payload);
   };
 
   return { savePost, getPosts, updatePost };

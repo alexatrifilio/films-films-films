@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Posts: FC = () => {
-  const { getPosts } = usePosts();
+  const { getPosts, updatePost } = usePosts();
   const [data, setData] = useState<Post[]>();
   const { me } = useAuth();
 
@@ -19,7 +19,7 @@ const Posts: FC = () => {
       setData(resp);
     };
     myPosts();
-  }, []);
+  }, [data, updatePost]);
 
   return (
     <div>
@@ -34,6 +34,7 @@ const Posts: FC = () => {
               id={id}
               image={image}
               title={title}
+              key={`postcard${new Date().getTime()}`}
             />
           );
         })}

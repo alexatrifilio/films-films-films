@@ -5,11 +5,11 @@ import { Comment } from "../../../types";
 import { defaultValuesComment } from "./defaultValues";
 
 type Props = {
-  onComment: (data: Partial<Comment>) => void;
+  onComment: (data: Pick<Comment, "commentDetail">) => void;
 };
 
 const CommentForm: FC<Props> = ({ onComment }) => {
-  const { register, handleSubmit } = useForm<Partial<Comment>>({
+  const { register, handleSubmit } = useForm<Pick<Comment, "commentDetail">>({
     defaultValues: defaultValuesComment,
   });
   return (

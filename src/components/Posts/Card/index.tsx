@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Card, Col, Row } from "react-bootstrap";
+import { randomKey } from "../../../helpers";
 import { useAuth, usePosts } from "../../../hooks";
 import { Comment, User } from "../../../types";
 import { CommentForm } from "../CommentForm";
@@ -25,9 +26,8 @@ const PostCard: FC<Props> = ({
 }) => {
   const { updatePost } = usePosts();
   const { me } = useAuth();
-
   return (
-    <Card className="post" key={id}>
+    <Card className="post" key={`card${id}`}>
       <Card.Body>
         <Row>
           {image && (
@@ -47,13 +47,13 @@ const PostCard: FC<Props> = ({
       {comments &&
         comments.map((comment) => {
           return (
-            <div className="comment" key={comment.user.id}>
+            <div className="comment" key={comments.indexOf(comment)}>
               <img src={comment.user.avatar} alt="" />
               <Card>
                 <Card.Body>
                   <Card.Text>
                     <span>{`${comment.user.name} ${comment.user.lastname}`}</span>
-                    <p>{detail}</p>
+                    <p>{comment.commentDetail}</p>
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer> {date} </Card.Footer>
@@ -63,12 +63,13 @@ const PostCard: FC<Props> = ({
         })}
       {me && (
         <CommentForm
-          onComment={() => {
+          onComment={(data: Pick<Comment, "commentDetail">) => {
+            console.log(data);
             updatePost(id, {
               comments: [
                 ...comments, //y este spread tampoco está bien pero no me doy cuenta como hacerlo
                 {
-                  // sé que me falta el spread operator para que se agregue la ino del formulario pero no se como llamarla por así decirlo...
+                  commentDetail: data.commentDetail,
                   date: new Date(),
                   user: {
                     id: me.id,
