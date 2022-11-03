@@ -1,9 +1,14 @@
 import { FC } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { Layout, Posts } from "../../components";
+import { PostForm } from "../../components/Posts/PostForm";
 import { withAuth } from "../../hoc";
+import { useAuth, usePosts } from "../../hooks";
 
 const HomePage: FC = () => {
+  const { savePost } = usePosts();
+  const { me } = useAuth();
+
   return (
     <Layout page="homepage">
       <Container>
@@ -20,8 +25,36 @@ const HomePage: FC = () => {
           </Col>
           <Col>
             <Row>
-              {" "}
-              <div>ACA EL FORM</div>
+              <Card>
+                {me && (
+                  <PostForm
+                    onPost={(payload) => {
+                      savePost({
+                        ...payload,
+                        user: {
+                          name: me?.name,
+                          lastname: me?.lastname,
+                          id: me?.id,
+                          avatar: me?.avatar,
+                        },
+                        comments: [
+                          {
+                            date: new Date().toLocaleDateString(),
+                            commentDetail: "",
+                            user: {
+                              name: "",
+                              lastname: "",
+                              id: "",
+                              avatar: "",
+                            },
+                          },
+                        ],
+                        date: new Date().toLocaleDateString(),
+                      });
+                    }}
+                  />
+                )}
+              </Card>
             </Row>
             <Row>
               <Posts />

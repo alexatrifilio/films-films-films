@@ -55,11 +55,11 @@ export type Post = {
   title: string;
   detail: string;
   comments: Comment[];
-  date: Date;
+  date: string;
 };
 
 export type Comment = {
   user: Pick<User, "id" | "name" | "lastname" | "avatar">;
   commentDetail: string;
-  date: Date;
+  date: string;
 };

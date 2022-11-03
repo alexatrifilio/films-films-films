@@ -60,8 +60,19 @@ const RecommendPage = () => {
                           title,
                           detail: overview,
                           image: `https://image.tmdb.org/t/p/w500/${poster_path}`,
-                          date: new Date(),
-                          comments: [],
+                          date: new Date().toLocaleDateString(),
+                          comments: [
+                            {
+                              date: new Date().toLocaleDateString(),
+                              commentDetail: "",
+                              user: {
+                                name: "",
+                                lastname: "",
+                                id: "",
+                                avatar: "",
+                              },
+                            },
+                          ],
                           user: {
                             id: me.id,
                             name: me.name,

@@ -70,7 +70,7 @@ const PostCard: FC<Props> = ({
                 ...comments, //y este spread tampoco está bien pero no me doy cuenta como hacerlo
                 {
                   commentDetail: data.commentDetail,
-                  date: new Date(),
+                  date: new Date().toLocaleDateString("en-US"),
                   user: {
                     id: me.id,
                     name: me.name,

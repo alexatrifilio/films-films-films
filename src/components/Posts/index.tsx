@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
 import { useAuth, usePosts } from "../../hooks";
 import { Post } from "../../types";
 import { PostCard } from "./Card";
@@ -19,7 +18,7 @@ const Posts: FC = () => {
       setData(resp);
     };
     myPosts();
-  }, [data, updatePost]);
+  }, []);
 
   return (
     <div>
@@ -29,12 +28,12 @@ const Posts: FC = () => {
             <PostCard
               author={user}
               comments={comments}
-              date={date.toString()}
+              date={date}
               detail={detail}
               id={id}
               image={image}
               title={title}
-              key={`postcard${new Date().getTime()}`}
+              key={`postcard${id}`}
             />
           );
         })}
