@@ -18,7 +18,7 @@ const Posts: FC = () => {
       setData(resp);
     };
     myPosts();
-  }, []);
+  }, [updatePost]);
 
   return (
     <div>

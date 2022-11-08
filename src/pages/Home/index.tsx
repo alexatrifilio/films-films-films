@@ -13,7 +13,7 @@ const HomePage: FC = () => {
     <Layout page="homepage">
       <Container>
         <Row>
-          <Col xs={4}>
+          <Col xs={3}>
             <Row>
               <div> esto es amigos a agregar </div>
             </Row>
@@ -39,7 +39,7 @@ const HomePage: FC = () => {
                         },
                         comments: [
                           {
-                            date: new Date().toLocaleDateString(),
+                            date: new Date(),
                             commentDetail: "",
                             user: {
                               name: "",
@@ -49,7 +49,7 @@ const HomePage: FC = () => {
                             },
                           },
                         ],
-                        date: new Date().toLocaleDateString(),
+                        date: new Date(),
                       });
                     }}
                   />

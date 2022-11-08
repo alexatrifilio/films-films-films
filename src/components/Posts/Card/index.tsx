@@ -1,15 +1,15 @@
 import { FC } from "react";
 import { Card, Col, Row } from "react-bootstrap";
-import { randomKey } from "../../../helpers";
 import { useAuth, usePosts } from "../../../hooks";
 import { Comment, User } from "../../../types";
 import { CommentForm } from "../CommentForm";
+import "./style.scss";
 
 type Props = {
   image?: string;
   title: string;
   author: Pick<User, "id" | "name" | "lastname" | "avatar">;
-  date: string;
+  date: Date;
   detail: string;
   id: string;
   comments: Comment[];
@@ -27,7 +27,7 @@ const PostCard: FC<Props> = ({
   const { updatePost } = usePosts();
   const { me } = useAuth();
   return (
-    <Card className="post" key={`card${id}`}>
+    <Card className="post-card" key={`card${id}`}>
       <Card.Body>
         <Row>
           {image && (
@@ -38,7 +38,8 @@ const PostCard: FC<Props> = ({
           <Col>
             <Card.Title>{title}</Card.Title>
             <Card.Subtitle>
-              {`${author.name} ${author.lastname}`} <span>{date}</span>
+              {`${author.name} ${author.lastname}`}{" "}
+              <span>{date.toString()}</span>
             </Card.Subtitle>
             <Card.Text>{detail}</Card.Text>
           </Col>
@@ -53,10 +54,12 @@ const PostCard: FC<Props> = ({
                 <Card.Body>
                   <Card.Text>
                     <span>{`${comment.user.name} ${comment.user.lastname}`}</span>
-                    <p>{comment.commentDetail}</p>
+                    <span className="comment-detail">
+                      {comment.commentDetail}
+                    </span>
                   </Card.Text>
                 </Card.Body>
-                <Card.Footer> {date} </Card.Footer>
+                <Card.Footer> {date.toString()} </Card.Footer>
               </Card>
             </div>
           );
@@ -67,10 +70,10 @@ const PostCard: FC<Props> = ({
             console.log(data);
             updatePost(id, {
               comments: [
-                ...comments, //y este spread tampoco está bien pero no me doy cuenta como hacerlo
+                ...(comments || []),
                 {
                   commentDetail: data.commentDetail,
-                  date: new Date().toLocaleDateString("en-US"),
+                  date: new Date(),
                   user: {
                     id: me.id,
                     name: me.name,

@@ -11,12 +11,11 @@ const usePosts = () => {
   }, []);
 
   const getPosts = async () => {
-    const response = await postApi.getAll();
-    // updatePosts(
-    //   response.sort((a: Post, b: Post) =>
-    //     a.date.getTime() <= b.date.getTime() ? -1 : 1
-    //   )
-    //);
+    let response = await postApi.getAll();
+
+    response = response.sort((a: Post, b: Post) =>
+      a.date.getTime() < b.date.getTime() ? -1 : 1
+    );
     return response;
   };
 

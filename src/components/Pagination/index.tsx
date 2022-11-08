@@ -10,13 +10,13 @@ const MyPagination: FC<Props> = ({ page, setPage }) => {
   let active = page;
   let items = [];
   for (let number = 1; number <= 5; number++) {
+    // acá cambiar el 5 por total pages
     items.push(
       <Pagination.Item
         key={number}
         active={number === active}
         onClick={() => {
           setPage(number);
-          console.log(active);
         }}
       >
         {number}
