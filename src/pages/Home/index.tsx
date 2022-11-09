@@ -37,18 +37,7 @@ const HomePage: FC = () => {
                           id: me?.id,
                           avatar: me?.avatar,
                         },
-                        comments: [
-                          {
-                            date: new Date(),
-                            commentDetail: "",
-                            user: {
-                              name: "",
-                              lastname: "",
-                              id: "",
-                              avatar: "",
-                            },
-                          },
-                        ],
+                        comments: [],
                         date: new Date(),
                       });
                     }}

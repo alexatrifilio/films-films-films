@@ -12,11 +12,9 @@ const usePosts = () => {
 
   const getPosts = async () => {
     let response = await postApi.getAll();
+    const reverseResponse = response.reverse();
 
-    response = response.sort((a: Post, b: Post) =>
-      a.date.getTime() < b.date.getTime() ? -1 : 1
-    );
-    return response;
+    return reverseResponse;
   };
 
   const savePost = async (payload: PostPayload) => {
