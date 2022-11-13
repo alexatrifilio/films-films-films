@@ -3,6 +3,7 @@ import { Card, Container } from "react-bootstrap";
 import { Layout, LogInForm } from "../../components";
 import { withAuth } from "../../hoc";
 import { useAuth } from "../../hooks/useAuth";
+import "./style.scss";
 
 const LogInPage: FC = () => {
   const { logIn } = useAuth();

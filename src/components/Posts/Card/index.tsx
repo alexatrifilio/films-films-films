@@ -36,12 +36,12 @@ const PostCard: FC<Props> = ({
             </Col>
           )}
           <Col>
-            <Card.Title>{title}</Card.Title>
-            <Card.Subtitle>
+            <Card.Title className="post-title">{title}</Card.Title>
+            <Card.Subtitle className="post-author">
               {`${author.name} ${author.lastname}`}{" "}
               <span>{date.toString()}</span>
             </Card.Subtitle>
-            <Card.Text>{detail}</Card.Text>
+            <Card.Text className="post-detail">{detail}</Card.Text>
           </Col>
         </Row>
       </Card.Body>
@@ -49,11 +49,17 @@ const PostCard: FC<Props> = ({
         comments.map((comment) => {
           return (
             <div className="comment" key={comments.indexOf(comment)}>
-              <img src={comment.user.avatar} alt="" />
               <Card>
-                <Card.Body>
-                  <Card.Text>
-                    <span>{`${comment.user.name} ${comment.user.lastname}`}</span>
+                <Card.Body className="comment-content">
+                  <div className="img-container">
+                    <img
+                      src={comment.user.avatar}
+                      alt="avatar"
+                      className="user-avatar"
+                    />
+                  </div>
+                  <Card.Text className="comment-text">
+                    <span className="user">{`${comment.user.name} ${comment.user.lastname}`}</span>
                     <span className="comment-detail">
                       {comment.commentDetail}
                     </span>

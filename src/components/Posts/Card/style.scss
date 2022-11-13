@@ -5,3 +5,22 @@
   display: inline-block;
   margin-left: 10px;
 }
+.comment-content {
+  display: flex;
+  align-items: center;
+  .comment-text {
+    margin-left: 20px;
+    .user {
+      font-style: italic;
+    }
+  }
+}
+.img-container {
+  border-radius: 100%;
+  overflow: hidden;
+  max-width: 100px;
+  max-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

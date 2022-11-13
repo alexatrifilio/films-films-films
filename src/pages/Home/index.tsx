@@ -4,6 +4,7 @@ import { Layout, Posts } from "../../components";
 import { PostForm } from "../../components/Posts/PostForm";
 import { withAuth } from "../../hoc";
 import { useAuth, usePosts } from "../../hooks";
+import "./style.scss";
 
 const HomePage: FC = () => {
   const { savePost } = usePosts();
@@ -25,9 +26,10 @@ const HomePage: FC = () => {
           </Col>
           <Col>
             <Row>
-              <Card>
+              <Card className="post-form-card">
                 {me && (
                   <PostForm
+                    className="post-form"
                     onPost={(payload) => {
                       savePost({
                         ...payload,

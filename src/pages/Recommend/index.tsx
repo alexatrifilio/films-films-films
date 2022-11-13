@@ -3,6 +3,7 @@ import { Button, Card, Form } from "react-bootstrap";
 import { Layout, MyPagination } from "../../components";
 import { withAuth } from "../../hoc";
 import { useAuth, useMovie, usePosts } from "../../hooks";
+import "./style.scss";
 
 const RecommendPage = () => {
   const { search, movie, setMovie, results, page, setPage } = useMovie();
