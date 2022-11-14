@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Card, Col, Row } from "react-bootstrap";
+import { formatDate } from "../../../helpers";
 import { useAuth, usePosts } from "../../../hooks";
 import { Comment, User } from "../../../types";
 import { CommentForm } from "../CommentForm";
@@ -31,18 +32,18 @@ const PostCard: FC<Props> = ({
       <Card.Body>
         <Row>
           {image && (
-            <Col>
+            <Col className="md-2">
               <Card.Img
                 className="post-img"
                 src={`https://image.tmdb.org/t/p/w500/${image}`}
               />
             </Col>
           )}
-          <Col className="md-9">
-            <Card.Subtitle className="post-author">
-              {`${author.name} ${author.lastname}`}{" "}
-              <span>{date.toString()}</span>
-            </Card.Subtitle>
+          <Col>
+            <div className="post-author">
+              <span>{`${author.name} ${author.lastname}`}</span>
+              <span>{formatDate(date)}</span>
+            </div>
             <Card.Title className="post-title">{title}</Card.Title>
             <Card.Text className="post-detail">{detail}</Card.Text>
           </Col>
@@ -68,7 +69,7 @@ const PostCard: FC<Props> = ({
                     </span>
                   </Card.Text>
                 </Card.Body>
-                <Card.Footer> {date.toString()} </Card.Footer>
+                <Card.Footer> {formatDate(comment.date)} </Card.Footer>
               </Card>
             </div>
           );
@@ -76,7 +77,6 @@ const PostCard: FC<Props> = ({
       {me && (
         <CommentForm
           onComment={(data: Pick<Comment, "commentDetail">) => {
-            console.log(data);
             updatePost(id, {
               comments: [
                 ...(comments || []),
