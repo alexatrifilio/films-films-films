@@ -31,16 +31,19 @@ const PostCard: FC<Props> = ({
       <Card.Body>
         <Row>
           {image && (
-            <Col className="md-4">
-              <Card.Img src={`https://image.tmdb.org/t/p/w500/${image}`} />
+            <Col>
+              <Card.Img
+                className="post-img"
+                src={`https://image.tmdb.org/t/p/w500/${image}`}
+              />
             </Col>
           )}
-          <Col>
-            <Card.Title className="post-title">{title}</Card.Title>
+          <Col className="md-9">
             <Card.Subtitle className="post-author">
               {`${author.name} ${author.lastname}`}{" "}
               <span>{date.toString()}</span>
             </Card.Subtitle>
+            <Card.Title className="post-title">{title}</Card.Title>
             <Card.Text className="post-detail">{detail}</Card.Text>
           </Col>
         </Row>

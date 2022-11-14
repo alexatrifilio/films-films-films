@@ -18,9 +18,31 @@
 .img-container {
   border-radius: 100%;
   overflow: hidden;
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 50px;
+  max-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.comment-form {
+  padding: 15px;
+}
+
+.comment-input {
+  margin-bottom: 10px;
+}
+
+.post-img {
+  max-width: 30%;
+}
+
+.post-author {
+  font-style: italic;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.post-title {
+  font-size: 2rem;
 }
