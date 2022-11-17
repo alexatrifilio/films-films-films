@@ -6,7 +6,8 @@ import { useAuth, useMovie, usePosts } from "../../hooks";
 import "./style.scss";
 
 const RecommendPage = () => {
-  const { search, movie, setMovie, results, page, setPage } = useMovie();
+  const { search, movie, setMovie, results, page, setPage, totalPages } =
+    useMovie();
   const { savePost } = usePosts();
   const { me } = useAuth();
 
@@ -79,7 +80,7 @@ const RecommendPage = () => {
               );
             })}
         </div>
-        <MyPagination page={page} setPage={setPage} />
+        <MyPagination page={page} setPage={setPage} totalPages={totalPages} />
       </>
     </Layout>
   );

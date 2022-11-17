@@ -1,7 +1,7 @@
 import { Movie } from "../../types";
 import { movieDB } from "../../utils";
 
-const search = async (query: string, page: number): Promise<Movie[]> => {
+const search = async (query: string, page: number) /*: Promise<Movie[]>*/ => {
   const response = await movieDB("search/movie", {
     params: {
       query,
@@ -9,7 +9,7 @@ const search = async (query: string, page: number): Promise<Movie[]> => {
     },
   });
 
-  return response.data.results;
+  return response.data;
 };
 
 export const movieApi = { search };
