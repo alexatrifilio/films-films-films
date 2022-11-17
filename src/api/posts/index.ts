@@ -17,8 +17,8 @@ const get = async (id: string): Promise<Post> => {
   return response.data;
 };
 
-const patch = async (payload: Post) => {
-  await postsDB.patch(`/posts/${payload.id}.json`);
+const patch = async (id: string, payload: Partial<Post>) => {
+  await postsDB.patch(`/posts/${id}.json`, payload);
 };
 
 export const postApi = { save, getAll, get, patch };

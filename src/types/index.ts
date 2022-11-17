@@ -50,7 +50,7 @@ export type PostPayload = Omit<Post, "id">;
 
 export type Post = {
   id: string;
-  user: Pick<User, "id" | "name" | "lastname">;
+  user: Pick<User, "id" | "name" | "lastname" | "avatar">;
   image?: string;
   title: string;
   detail: string;
@@ -59,7 +59,7 @@ export type Post = {
 };
 
 export type Comment = {
-  user: Pick<User, "id" | "name" | "lastname">;
-  detail: string;
+  user: Pick<User, "id" | "name" | "lastname" | "avatar">;
+  commentDetail: string;
   date: Date;
 };

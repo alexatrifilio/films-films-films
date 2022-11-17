@@ -66,6 +66,7 @@ const RecommendPage = () => {
                             id: me.id,
                             name: me.name,
                             lastname: me.lastname,
+                            avatar: me.avatar,
                           },
                         });
                       }}
