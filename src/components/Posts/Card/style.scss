@@ -5,3 +5,46 @@
   display: inline-block;
   margin-left: 10px;
 }
+.comment-content {
+  display: flex;
+  align-items: center;
+  .comment-text {
+    margin-left: 20px;
+    .user {
+      font-style: italic;
+    }
+  }
+}
+.img-container {
+  border-radius: 100%;
+  overflow: hidden;
+  max-width: 50px;
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-form {
+  padding: 15px;
+}
+
+.comment-input {
+  margin-bottom: 10px;
+}
+
+.post-img {
+  max-width: 30%;
+}
+
+.post-author {
+  display: flex;
+  justify-content: space-between;
+  span {
+    display: inline-flex;
+  }
+}
+
+.post-title {
+  font-size: 2rem;
+}

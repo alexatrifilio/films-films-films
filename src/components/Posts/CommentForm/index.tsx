@@ -13,9 +13,13 @@ const CommentForm: FC<Props> = ({ onComment }) => {
     defaultValues: defaultValuesComment,
   });
   return (
-    <Form onSubmit={handleSubmit(onComment)}>
-      <Form.Control type="text" {...register("commentDetail")} />
-      <Button variant="dark" type="submit">
+    <Form onSubmit={handleSubmit(onComment)} className="comment-form">
+      <Form.Control
+        type="text"
+        {...register("commentDetail")}
+        className="comment-input"
+      />
+      <Button variant="dark" type="submit" className="comment-btn">
         Comentar
       </Button>
     </Form>

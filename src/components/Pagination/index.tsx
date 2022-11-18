@@ -4,25 +4,12 @@ import { Pagination } from "react-bootstrap";
 type Props = {
   page: number;
   setPage: (number: number) => void;
+  totalPages: number;
 };
 
-const MyPagination: FC<Props> = ({ page, setPage }) => {
+const MyPagination: FC<Props> = ({ page, setPage, totalPages }) => {
   let active = page;
-  let items = [];
-  for (let number = 1; number <= 5; number++) {
-    // acá cambiar el 5 por total pages
-    items.push(
-      <Pagination.Item
-        key={number}
-        active={number === active}
-        onClick={() => {
-          setPage(number);
-        }}
-      >
-        {number}
-      </Pagination.Item>
-    );
-  }
+
   return (
     <div>
       <Pagination>
@@ -36,7 +23,29 @@ const MyPagination: FC<Props> = ({ page, setPage }) => {
             setPage(active - 1);
           }}
         />
-        {items}
+
+        {active > 2 && (
+          <Pagination.Item onClick={() => setPage(active - 2)}>
+            {active - 2}
+          </Pagination.Item>
+        )}
+        {active > 1 && (
+          <Pagination.Item onClick={() => setPage(active - 1)}>
+            {active - 1}
+          </Pagination.Item>
+        )}
+        <Pagination.Item disabled>{active}</Pagination.Item>
+        {active < totalPages - 3 && (
+          <Pagination.Item onClick={() => setPage(active + 1)}>
+            {active + 1}
+          </Pagination.Item>
+        )}
+        {active < totalPages - 2 && (
+          <Pagination.Item onClick={() => setPage(active + 2)}>
+            {active + 2}
+          </Pagination.Item>
+        )}
+
         <Pagination.Next
           onClick={() => {
             setPage(active + 1);
@@ -44,7 +53,7 @@ const MyPagination: FC<Props> = ({ page, setPage }) => {
         />
         <Pagination.Last
           onClick={() => {
-            setPage(5);
+            setPage(totalPages);
           }}
         />
       </Pagination>

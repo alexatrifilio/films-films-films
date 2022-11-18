@@ -1,16 +1,20 @@
 import { FC } from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../hooks";
+import "./style.scss";
 
 type Props = {
   hideNav?: boolean;
 };
 
 const MainNav: FC<Props> = ({ hideNav }) => {
+  const { me, logOut } = useAuth();
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand>Films Films Films</Navbar.Brand>
+        <Navbar.Brand className="brand">Films Films Films</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         {!hideNav ? (
           <>
@@ -22,17 +26,18 @@ const MainNav: FC<Props> = ({ hideNav }) => {
                 <Link className="nav-link" to={"/recommend"}>
                   Recomendar Película
                 </Link>
-                <Link className="nav-link" to={"/friends:id"}>
-                  Buscar Amigos
-                </Link>
                 <NavDropdown title="Usuario" id="basic-nav-dropdown">
                   <Link className="nav-link" to={"/user"}>
-                    Mi Peril
+                    {me?.name}
                   </Link>
                   <NavDropdown.Divider />
                   <Link className="nav-link" to={"/friends"}>
                     Mis Amigos
                   </Link>
+                  <Button onClick={logOut} variant="dark" className="logout">
+                    {" "}
+                    Log Out{" "}
+                  </Button>
                 </NavDropdown>
               </Nav>
             </Navbar.Collapse>

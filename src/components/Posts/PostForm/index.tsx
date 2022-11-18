@@ -6,9 +6,10 @@ import { defaultValuesPost } from "./defaultValues";
 
 type Props = {
   onPost: (payload: Pick<PostPayload, "title" | "detail">) => void;
+  className: string;
 };
 
-const PostForm: FC<Props> = ({ onPost }) => {
+const PostForm: FC<Props> = ({ onPost, className }) => {
   const { register, handleSubmit } = useForm<
     Pick<PostPayload, "title" | "detail">
   >({
@@ -16,13 +17,15 @@ const PostForm: FC<Props> = ({ onPost }) => {
   });
 
   return (
-    <Form onSubmit={handleSubmit(onPost)}>
+    <Form onSubmit={handleSubmit(onPost)} className={className}>
       <Form.Control
+        className="post-input"
         type="text"
         placeholder="Ingresá el título de tu publicación"
         {...register("title")}
       />
       <Form.Control
+        className="post-input"
         as={"textarea"}
         placeholder="¿Qué estás pensando?"
         {...register("detail")}

@@ -44,7 +44,7 @@ const useAuth = () => {
 
   const logOut = async () => {
     if (me) {
-      usersApi.patch(me.id, { sessionToken: undefined });
+      await usersApi.patch(me.id, { sessionToken: "." });
       setCurrentUser(undefined);
     }
   };

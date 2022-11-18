@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Card, Col, Row } from "react-bootstrap";
+import { formatDate } from "../../../helpers";
 import { useAuth, usePosts } from "../../../hooks";
 import { Comment, User } from "../../../types";
 import { CommentForm } from "../CommentForm";
@@ -31,17 +32,20 @@ const PostCard: FC<Props> = ({
       <Card.Body>
         <Row>
           {image && (
-            <Col className="md-4">
-              <Card.Img src={`https://image.tmdb.org/t/p/w500/${image}`} />
+            <Col className="md-2">
+              <Card.Img
+                className="post-img"
+                src={`https://image.tmdb.org/t/p/w500/${image}`}
+              />
             </Col>
           )}
           <Col>
-            <Card.Title>{title}</Card.Title>
-            <Card.Subtitle>
-              {`${author.name} ${author.lastname}`}{" "}
-              <span>{date.toString()}</span>
-            </Card.Subtitle>
-            <Card.Text>{detail}</Card.Text>
+            <div className="post-author">
+              <span>{`${author.name} ${author.lastname}`}</span>
+              <span>{formatDate(date)}</span>
+            </div>
+            <Card.Title className="post-title">{title}</Card.Title>
+            <Card.Text className="post-detail">{detail}</Card.Text>
           </Col>
         </Row>
       </Card.Body>
@@ -49,17 +53,23 @@ const PostCard: FC<Props> = ({
         comments.map((comment) => {
           return (
             <div className="comment" key={comments.indexOf(comment)}>
-              <img src={comment.user.avatar} alt="" />
               <Card>
-                <Card.Body>
-                  <Card.Text>
-                    <span>{`${comment.user.name} ${comment.user.lastname}`}</span>
+                <Card.Body className="comment-content">
+                  <div className="img-container">
+                    <img
+                      src={comment.user.avatar}
+                      alt="avatar"
+                      className="user-avatar"
+                    />
+                  </div>
+                  <Card.Text className="comment-text">
+                    <span className="user">{`${comment.user.name} ${comment.user.lastname}`}</span>
                     <span className="comment-detail">
                       {comment.commentDetail}
                     </span>
                   </Card.Text>
                 </Card.Body>
-                <Card.Footer> {date.toString()} </Card.Footer>
+                <Card.Footer> {formatDate(comment.date)} </Card.Footer>
               </Card>
             </div>
           );
@@ -67,7 +77,6 @@ const PostCard: FC<Props> = ({
       {me && (
         <CommentForm
           onComment={(data: Pick<Comment, "commentDetail">) => {
-            console.log(data);
             updatePost(id, {
               comments: [
                 ...(comments || []),
