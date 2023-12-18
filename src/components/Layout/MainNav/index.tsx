@@ -27,7 +27,7 @@ const MainNav: FC<Props> = ({ hideNav }) => {
                   Recomendar Película
                 </Link>
                 <NavDropdown title="Usuario" id="basic-nav-dropdown">
-                  <Link className="nav-link" to={"/user"}>
+                  <Link className="nav-link" to={"/profile"}>
                     {me?.name}
                   </Link>
                   <NavDropdown.Divider />
